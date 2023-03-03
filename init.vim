@@ -39,6 +39,7 @@ call plug#begin()
  Plug 'othree/html5.vim'
  Plug 'pangloss/vim-javascript'
  Plug 'evanleck/vim-svelte', {'branch': 'main'}
+ Plug 'APZelos/blamer.nvim'
 
 call plug#end()
 
@@ -47,4 +48,8 @@ colorscheme dracula
 :lua require('init')
 
 NvimTreeToggle
+
+let g:blamer_enabled = 1
+let g:blamer_delay = 400
+
 
