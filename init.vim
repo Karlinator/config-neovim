@@ -40,6 +40,7 @@ call plug#begin()
  Plug 'pangloss/vim-javascript'
  Plug 'evanleck/vim-svelte', {'branch': 'main'}
  Plug 'APZelos/blamer.nvim'
+ Plug 'neovim/nvim-lspconfig'
 
 call plug#end()
 
