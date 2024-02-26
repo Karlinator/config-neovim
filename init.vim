@@ -53,4 +53,6 @@ NvimTreeToggle
 let g:blamer_enabled = 1
 let g:blamer_delay = 400
 
+: lua vim.keymap.set('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+
 
