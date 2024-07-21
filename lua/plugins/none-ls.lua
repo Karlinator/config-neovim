@@ -10,7 +10,13 @@ return {
         sources = {},
       })
 
-      vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+      vim.keymap.set("n", "<leader>gf", function()
+        vim.lsp.buf.format({
+          filter = function(client)
+            return client.name ~= "tsserver"
+          end,
+        })
+      end, {})
     end,
   },
   {
