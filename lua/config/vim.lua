@@ -5,7 +5,7 @@ vim.cmd("set shiftwidth=4")
 vim.cmd("set nu rnu")
 vim.opt.smartindent = false
 
-vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { silent = true })
+vim.keymap.set("t", "<leader><esc>", "<C-\\><C-n>", { silent = true })
 
 vim.api.nvim_create_user_command("StupidIndent", function()
 	vim.cmd("set noexpandtab tabstop=8 shiftwidth=4 softtabstop=4")

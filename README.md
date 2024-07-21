@@ -22,20 +22,32 @@ The language servers and such may rely on fairly arbitrary external dependencies
 On Fedora it's pretty straightforward, you just need:
 
 ```
-dnf install -y git python golang lua luarocks lua5.1 tar curl nodejs neovim cargo ripgrep fd-find
+dnf install -y git python python-pip golang lua luarocks lua5.1 tar curl nodejs neovim cargo ripgrep fd-find
+
 sudo dnf copr enable atim/lazygit -y
 sudo dnf install lazygit -y
+
+pip install neovim-remote
 ```
 
 RHEL/Rocky Linux is a bit more complicated, mostly because Epel has a Neovim version that is too old. The full script to get it up-and running on a bare Rocky Linux 9 install is:
 
 ```
 dnf install -y epel-release
-dnf install -y git python golang lua luarocks lua5.1 tar curl nodejs cargo ripgrep fd-find
+dnf install -y git python python-pip golang lua luarocks lua5.1 tar curl nodejs cargo ripgrep fd-find
 
 curl -LO https://github.com/neovim/neovim/releases/download/v0.10.0/nvim-linux64.tar.gz
 tar -xzvf nvim-linux64.tar.gz -C .local/ --strip-components=1
 
 sudo dnf copr enable atim/lazygit -y
 sudo dnf install lazygit -y
+
+pip install neovim-remote
+```
+
+You also need to edit `~/.config/lazygit/config.yml` so lazygit doesn't just spawn nested nvims:
+
+```yaml
+os:
+    editPreset: nvim-remote
 ```
