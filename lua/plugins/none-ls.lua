@@ -6,6 +6,7 @@ return {
 		},
 		config = function()
 			local null_ls = require("null-ls")
+			local h = require("null-ls.helpers")
 			null_ls.setup({
 				sources = {},
 			})
@@ -37,7 +38,8 @@ return {
 					"codespell",
 					"mypy",
 					"rpmspec",
-					"chackmake",
+					"checkmake",
+					"black",
 				},
 				automatic_installation = false,
 				handlers = {},
