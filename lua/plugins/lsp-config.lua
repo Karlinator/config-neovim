@@ -58,6 +58,7 @@ return {
 			lspconfig.sqls.setup(opts)
 			lspconfig.yamlls.setup(opts)
 			lspconfig.gitlab_ci_ls.setup(opts)
+			lspconfig.rust_analyzer.setup(opts)
 
 			vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 				pattern = "*.gitlab-ci*.{yml,yaml}",
@@ -65,6 +66,7 @@ return {
 					vim.bo.filetype = "yaml.gitlab"
 				end,
 			})
+
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})

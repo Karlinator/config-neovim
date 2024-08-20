@@ -40,7 +40,6 @@ return {
 					"rpmspec",
 					"checkmake",
 					"black",
-					"clang-format",
 				},
 				automatic_installation = false,
 				handlers = {},
