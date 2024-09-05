@@ -24,7 +24,7 @@ return {
                     "html",
                     "jsonls",
                     "jdtls",
-                    "tsserver",
+                    "vtsls",
                     "marksman",
                     "intelephense",
                     "pyright",
@@ -60,7 +60,7 @@ return {
                 }
             }
             })
-            lspconfig.tsserver.setup(opts)
+            lspconfig.vtsls.setup(opts)
             lspconfig.marksman.setup(opts)
             lspconfig.intelephense.setup(opts)
             lspconfig.pyright.setup(opts)
