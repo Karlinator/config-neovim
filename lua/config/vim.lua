@@ -17,7 +17,14 @@ vim.api.nvim_create_user_command("NormalIndent", function()
 	vim.cmd("TSEnable indent")
 end, {})
 
-local stupidIndents = { OpointLuceneLib = 4, opointlucenelib=4, SolrIndex = 4, ["search-system"] = 2, ["search-system-karl"] = 2 }
+local stupidIndents = {
+	OpointLuceneLib = 4,
+	opointlucenelib = 4,
+	SolrIndex = 4,
+	["search-system"] = 2,
+	["search-system-karl"] = 2,
+	restarter = 2,
+}
 
 local path = vim.fn.getcwd():match("([^/]+)$")
 
