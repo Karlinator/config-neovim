@@ -27,7 +27,8 @@ return {
                     "vtsls",
                     "marksman",
                     "intelephense",
-                    "pylsp",
+                    "ruff_lsp",
+                    "pyright",
                     "sqls",
                     "yamlls",
                     "gitlab_ci_ls",
@@ -63,7 +64,8 @@ return {
             lspconfig.vtsls.setup(opts)
             lspconfig.marksman.setup(opts)
             lspconfig.intelephense.setup(opts)
-            lspconfig.pylsp.setup(opts)
+            lspconfig.ruff_lsp.setup(opts)
+            lspconfig.pyright.setup(opts)
             lspconfig.sqls.setup(opts)
             lspconfig.yamlls.setup(opts)
             lspconfig.gitlab_ci_ls.setup(opts)

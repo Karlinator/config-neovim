@@ -47,7 +47,6 @@ return {
 					"mypy",
 					"rpmspec",
 					"checkmake",
-					"black",
 				},
 				automatic_installation = false,
 				handlers = {},
