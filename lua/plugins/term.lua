@@ -2,15 +2,12 @@ return {
 	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
-		config = function()
-			local opts = {
+		opts = {
 				open_mapping = [[<leader>.]],
 				insert_mappings = false,
 				terminal_mappings = false,
-			}
-			local toggleterm = require("toggleterm")
-			toggleterm.setup(opts)
-
+			},
+        init = function()
 			local Terminal = require("toggleterm.terminal").Terminal
 			local lazygit = Terminal:new({
 				cmd = "lazygit",

@@ -2,17 +2,14 @@ return {
     {
         "williamboman/mason.nvim",
         cmd = "Mason",
-        config = function()
-            require("mason").setup()
-        end,
+        config = true,
     },
     {
         "williamboman/mason-lspconfig.nvim",
         dependencies = {
             "williamboman/mason.nvim",
         },
-        config = function()
-            require("mason-lspconfig").setup({
+        opts = {
                 ensure_installed = {
                     "lua_ls",
                     "typos_lsp",
@@ -33,12 +30,11 @@ return {
                     "yamlls",
                     "gitlab_ci_ls",
                 },
-            })
-        end,
+            },
     },
     {
         "neovim/nvim-lspconfig",
-        config = function()
+        init = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             local lspconfig = require("lspconfig")
             local opts = { capabilities = capabilities }

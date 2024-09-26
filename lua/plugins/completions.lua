@@ -5,10 +5,10 @@ return {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 	},
-	config = function()
+	opts = function()
 		local cmp = require("cmp")
 
-		cmp.setup({
+		return {
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 			}),
@@ -19,6 +19,6 @@ return {
 				["<C-e>"] = cmp.mapping.abort(),
 				["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 			}),
-		})
+		}
 	end,
 }

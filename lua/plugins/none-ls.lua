@@ -4,11 +4,10 @@ return {
 		dependencies = {
 			"nvimtools/none-ls-extras.nvim",
 		},
-		config = function()
+		opts = function()
 			local null_ls = require("null-ls")
-			local h = require("null-ls.helpers")
 
-			null_ls.setup({
+			return {
 				sources = {
 					null_ls.builtins.diagnostics.mypy.with({
 						extra_args = function()
@@ -17,8 +16,10 @@ return {
 						end,
 					}),
 				},
-			})
+			}
+		end,
 
+		init = function()
 			vim.keymap.set("n", "<leader>gf", function()
 				vim.lsp.buf.format({
 					filter = function(client)
@@ -35,22 +36,20 @@ return {
 			"williamboman/mason.nvim",
 			"nvimtools/none-ls.nvim",
 		},
-		config = function()
-			require("mason-null-ls").setup({
-				ensure_installed = {
-					"prettierd",
-					"eslint_d",
-					"stylua",
-					"gitsigns",
-					"gitrebase",
-					"codespell",
-					"mypy",
-					"rpmspec",
-					"checkmake",
-				},
-				automatic_installation = false,
-				handlers = {},
-			})
-		end,
+		opts = {
+			ensure_installed = {
+				"prettierd",
+				"eslint_d",
+				"stylua",
+				"gitsigns",
+				"gitrebase",
+				"codespell",
+				"mypy",
+				"rpmspec",
+				"checkmake",
+			},
+			automatic_installation = false,
+			handlers = {},
+		},
 	},
 }
