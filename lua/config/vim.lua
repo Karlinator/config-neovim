@@ -24,6 +24,7 @@ local stupidIndents = {
 	["search-system"] = 2,
 	["search-system-karl"] = 2,
 	restarter = 2,
+	watchindex = 4,
 }
 
 local path = vim.fn.getcwd():match("([^/]+)$")
