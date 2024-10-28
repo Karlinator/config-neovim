@@ -21,7 +21,7 @@ return {
 				"html",
 				"jsonls",
 				"jdtls",
-				"vtsls",
+				"ts_ls",
 				"marksman",
 				"intelephense",
 				"ruff_lsp",
@@ -67,7 +67,7 @@ return {
 					},
 				},
 			})
-			lspconfig.vtsls.setup(opts)
+			lspconfig.ts_ls.setup(opts)
 			lspconfig.marksman.setup(opts)
 			lspconfig.intelephense.setup(opts)
 			lspconfig.ruff_lsp.setup(opts)
