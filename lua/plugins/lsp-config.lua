@@ -60,6 +60,8 @@ return {
 						project = {
 							referencedLibraries = {
 								"lib/*",
+								"/usr/share/java/*",
+								"/usr/share/java/*/*",
 							},
 						},
 					},
