@@ -77,6 +77,41 @@ return {
 			lspconfig.gitlab_ci_ls.setup(opts)
 			lspconfig.rust_analyzer.setup(opts)
 			lspconfig.svelte.setup(opts)
+			-- lspconfig.svelte.setup({
+			-- 	capabilities = {
+			-- 		workspace = {
+			-- 			didChangeWatchedFiles = false,
+			-- 		},
+			-- 	},
+			-- 	filetypes = { "svelte" },
+			-- 	on_attach = function(client, bufnr)
+			-- 		if client.name == "svelte" then
+			-- 			vim.api.nvim_create_autocmd("BufWritePost", {
+			-- 				pattern = { "*.js", "*.ts", "*.svelte" },
+            --                 group = vim.api.nvim_create_augroup("svelte_ondidchangetsorjsfile", { clear = true }),
+			-- 				callback = function(ctx)
+			-- 					client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+			-- 				end,
+			-- 			})
+			-- 		end
+			-- 		if vim.bo[bufnr].filetype == "svelte" then
+			-- 			vim.api.nvim_create_autocmd("BufWritePost", {
+			-- 				pattern = { "*.js", "*.ts", "*.svelte" },
+			-- 				callback = function(ctx)
+			-- 					client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+			-- 				end,
+			-- 			})
+			-- 		end
+			-- 	end,
+			-- })
+
+            -- This is an extremely stupid workaround. It restarts the whole svelte language server every time I save a page ts file.
+            -- Without this the language server just never catches the updated generated types, because the file watcher doesn't work.
+            -- No other workaround I've tried has worked.
+			vim.api.nvim_create_autocmd({ "BufWrite" }, {
+				pattern = { "+page.server.ts", "+page.ts", "+layout.server.ts", "+layout.ts" },
+				command = "LspRestart svelte",
+			})
 
 			vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 				pattern = "*.gitlab-ci*.{yml,yaml}",
