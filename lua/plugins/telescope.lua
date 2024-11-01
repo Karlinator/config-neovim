@@ -3,16 +3,26 @@ return {
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
 		dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-fzf-native.nvim" },
-		opts = {
-			pickers = {
-				find_files = {
-					find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
+		opts = function()
+			local actions = require("telescope.actions")
+			return {
+				pickers = {
+					find_files = {
+						find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
+					},
+					live_grep = {
+						additional_args = { "--iglob", "!.git", "--hidden" },
+					},
 				},
-				live_grep = {
-					additional_args = { "--iglob", "!.git", "--hidden" },
+				defaults = {
+					mappings = {
+						i = {
+							["<esc>"] = actions.close,
+						},
+					},
 				},
-			},
-		},
+			}
+		end,
 		init = function()
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
