@@ -3,11 +3,11 @@ return {
 		"akinsho/toggleterm.nvim",
 		version = "*",
 		opts = {
-				open_mapping = [[<leader>.]],
-				insert_mappings = false,
-				terminal_mappings = false,
-			},
-        init = function()
+			open_mapping = [[<leader>.]],
+			insert_mappings = false,
+			terminal_mappings = false,
+		},
+		init = function()
 			local Terminal = require("toggleterm.terminal").Terminal
 			local lazygit = Terminal:new({
 				cmd = "lazygit",
@@ -31,6 +31,12 @@ return {
 				-- function to run on closing the terminal
 				on_close = function(term)
 					vim.cmd("startinsert!")
+					-- Tell neo-tree that git stuff (maybe) happened
+					-- This makes it refresh the git status and update e.g uncommitted changes
+					local events = require("neo-tree.events")
+					if events then
+						events.fire_event(events.GIT_EVENT)
+					end
 				end,
 			})
 
