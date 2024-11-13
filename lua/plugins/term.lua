@@ -6,6 +6,7 @@ return {
 			open_mapping = [[<leader>.]],
 			insert_mappings = false,
 			terminal_mappings = false,
+			start_in_insert = false,
 		},
 		init = function()
 			local Terminal = require("toggleterm.terminal").Terminal
