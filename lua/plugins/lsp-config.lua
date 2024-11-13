@@ -24,7 +24,7 @@ return {
 				"ts_ls",
 				"marksman",
 				"intelephense",
-				"ruff_lsp",
+				"ruff",
 				"pyright",
 				"sqls",
 				"yamlls",
@@ -70,7 +70,7 @@ return {
 			lspconfig.ts_ls.setup(opts)
 			lspconfig.marksman.setup(opts)
 			lspconfig.intelephense.setup(opts)
-			lspconfig.ruff_lsp.setup(opts)
+			lspconfig.ruff.setup(opts)
 			lspconfig.pyright.setup(opts)
 			lspconfig.sqls.setup(opts)
 			lspconfig.yamlls.setup(opts)
