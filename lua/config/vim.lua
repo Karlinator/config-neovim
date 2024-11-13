@@ -3,7 +3,8 @@ vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set nu rnu")
-vim.opt.smartindent = false
+vim.opt.autoindent = true
+vim.opt.smartindent = true
 
 vim.keymap.set("t", "<esc><leader>", "<C-\\><C-n>", { silent = true })
 
@@ -18,16 +19,16 @@ vim.api.nvim_create_user_command("NormalIndent", function()
 end, {})
 
 local stupidIndents = {
-	OpointLuceneLib = 4,
 	opointlucenelib = 4,
-	SolrIndex = 4,
+	solrindex = 4,
 	["search-system"] = 2,
 	["search-system-karl"] = 2,
 	restarter = 2,
 	watchindex = 4,
+	ocl = 2,
 }
 
-local path = vim.fn.getcwd():match("([^/]+)$")
+local path = string.lower(vim.fn.getcwd():match("([^/]+)$"))
 
 if stupidIndents[path] then
 	vim.cmd(string.format("StupidIndent %s", stupidIndents[path]))
