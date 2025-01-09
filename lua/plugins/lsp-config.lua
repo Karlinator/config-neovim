@@ -71,7 +71,21 @@ return {
 			lspconfig.marksman.setup(opts)
 			lspconfig.intelephense.setup(opts)
 			lspconfig.ruff.setup(opts)
-			lspconfig.pyright.setup(opts)
+			lspconfig.pyright.setup({
+				capabilities = capabilities,
+				settings = {
+					pyright = {
+						-- Using Ruff's import organizer
+						disableOrganizeImports = true,
+					},
+					python = {
+						analysis = {
+							-- Ignore all files for analysis to exclusively use Ruff for linting
+							ignore = { "*" },
+						},
+					},
+				},
+			})
 			lspconfig.sqls.setup(opts)
 			lspconfig.yamlls.setup(opts)
 			lspconfig.gitlab_ci_ls.setup(opts)
@@ -88,7 +102,7 @@ return {
 			-- 		if client.name == "svelte" then
 			-- 			vim.api.nvim_create_autocmd("BufWritePost", {
 			-- 				pattern = { "*.js", "*.ts", "*.svelte" },
-            --                 group = vim.api.nvim_create_augroup("svelte_ondidchangetsorjsfile", { clear = true }),
+			--                 group = vim.api.nvim_create_augroup("svelte_ondidchangetsorjsfile", { clear = true }),
 			-- 				callback = function(ctx)
 			-- 					client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
 			-- 				end,
@@ -105,9 +119,9 @@ return {
 			-- 	end,
 			-- })
 
-            -- This is an extremely stupid workaround. It restarts the whole svelte language server every time I save a page ts file.
-            -- Without this the language server just never catches the updated generated types, because the file watcher doesn't work.
-            -- No other workaround I've tried has worked.
+			-- This is an extremely stupid workaround. It restarts the whole svelte language server every time I save a page ts file.
+			-- Without this the language server just never catches the updated generated types, because the file watcher doesn't work.
+			-- No other workaround I've tried has worked.
 			vim.api.nvim_create_autocmd({ "BufWrite" }, {
 				pattern = { "+page.server.ts", "+page.ts", "+layout.server.ts", "+layout.ts" },
 				command = "LspRestart svelte",
