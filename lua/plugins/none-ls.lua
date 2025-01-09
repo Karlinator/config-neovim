@@ -56,10 +56,11 @@ return {
 			})
 		end,
 		init = function()
+			local format_sources = { ["null-ls"] = true, ruff = true, clangd = true }
 			vim.keymap.set("n", "<leader>gf", function()
 				vim.lsp.buf.format({
 					filter = function(client)
-						return client.name == "null-ls"
+						return format_sources[client.name]
 					end,
 				})
 			end, {})
