@@ -5,6 +5,7 @@ vim.cmd("set shiftwidth=4")
 vim.cmd("set nu rnu")
 vim.opt.autoindent = true
 vim.opt.smartindent = true
+vim.opt.undofile = true
 
 vim.keymap.set("t", "<esc><leader>", "<C-\\><C-n>", { silent = true })
 
