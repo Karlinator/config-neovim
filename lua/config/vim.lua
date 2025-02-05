@@ -7,7 +7,7 @@ vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.undofile = true
 
-vim.keymap.set("t", "<esc><leader>", "<C-\\><C-n>", { silent = true })
+vim.keymap.set("t", "<C-space>", "<C-\\><C-n>", { silent = true })
 
 vim.api.nvim_create_user_command("StupidIndent", function(opts)
 	local indent = opts.fargs[1] or "2"
