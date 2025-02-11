@@ -39,12 +39,6 @@ return {
 			local lspconfig = require("lspconfig")
 			local opts = { capabilities = capabilities }
 			lspconfig.lua_ls.setup(opts)
-			lspconfig.typos_lsp.setup({
-				capabilities = capabilities,
-				init_options = {
-					config = "~/.typos.toml",
-				},
-			})
 			lspconfig.clangd.setup(opts)
 			lspconfig.unocss.setup(opts)
 			lspconfig.dockerls.setup(opts)
