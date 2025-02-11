@@ -35,4 +35,6 @@ if stupidIndents[path] then
 	vim.cmd(string.format("StupidIndent %s", stupidIndents[path]))
 end
 
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, {})
+vim.keymap.set("n", "<leader>e", function()
+	vim.diagnostic.open_float({ source = true })
+end, {})
