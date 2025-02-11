@@ -12,7 +12,6 @@ return {
 		opts = {
 			ensure_installed = {
 				"lua_ls",
-				"typos_lsp",
 				"clangd",
 				"unocss",
 				"dockerls",

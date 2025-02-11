@@ -83,7 +83,7 @@ return {
 				"stylua",
 				"gitsigns",
 				"gitrebase",
-				-- "codespell",
+				"codespell",
 				"mypy",
 				"rpmspec",
 				"checkmake",
