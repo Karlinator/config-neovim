@@ -15,6 +15,9 @@ return {
 				null_ls.builtins.diagnostics.mypy.with({
 					extra_args = { "--python-executable", (virtual or "/usr") .. "/bin/python" },
 				}),
+				null_ls.builtins.diagnostics.codespell.with({
+					extra_args = { "-L", "searchd" },
+				}),
 				-- null_ls.builtins.diagnostics.mypy.with({
 				-- 	-- command = virtual and (virtual .. "/bin/dmypy") or "dmypy",
 				-- 	command = "dmypy",
