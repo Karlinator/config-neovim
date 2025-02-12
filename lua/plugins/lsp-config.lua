@@ -31,87 +31,82 @@ return {
 				"svelte",
 			},
 		},
+		init = function()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local lspconfig = require("lspconfig")
+			local mason_lspconfic = require("mason-lspconfig")
+			mason_lspconfic.setup_handlers({
+				function(server_name)
+					require("lspconfig")[server_name].setup({})
+				end,
+				["jdtls"] = function()
+					lspconfig.jdtls.setup({
+						capabilities = capabilities,
+						settings = {
+							java = {
+								project = {
+									referencedLibraries = {
+										"lib/*",
+										"/usr/share/java/*",
+										"/usr/share/java/*/*",
+									},
+								},
+							},
+						},
+					})
+				end,
+				["pyright"] = function()
+					lspconfig.pyright.setup({
+						capabilities = capabilities,
+						settings = {
+							pyright = {
+								-- Using Ruff's import organizer
+								disableOrganizeImports = true,
+							},
+							python = {
+								analysis = {
+									-- Ignore all files for analysis to exclusively use Ruff for linting
+									ignore = { "*" },
+								},
+							},
+						},
+					})
+				end,
+				-- ["svelte"] = function()
+				-- lspconfig.svelte.setup({
+				-- 	capabilities = {
+				-- 		workspace = {
+				-- 			didChangeWatchedFiles = false,
+				-- 		},
+				-- 	},
+				-- 	filetypes = { "svelte" },
+				-- 	on_attach = function(client, bufnr)
+				-- 		if client.name == "svelte" then
+				-- 			vim.api.nvim_create_autocmd("BufWritePost", {
+				-- 				pattern = { "*.js", "*.ts", "*.svelte" },
+				--                 group = vim.api.nvim_create_augroup("svelte_ondidchangetsorjsfile", { clear = true }),
+				-- 				callback = function(ctx)
+				-- 					client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+				-- 				end,
+				-- 			})
+				-- 		end
+				-- 		if vim.bo[bufnr].filetype == "svelte" then
+				-- 			vim.api.nvim_create_autocmd("BufWritePost", {
+				-- 				pattern = { "*.js", "*.ts", "*.svelte" },
+				-- 				callback = function(ctx)
+				-- 					client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+				-- 				end,
+				-- 			})
+				-- 		end
+				-- 	end,
+				-- })
+				-- end
+			})
+		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
 		init = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
-			local opts = { capabilities = capabilities }
-			lspconfig.lua_ls.setup(opts)
-			lspconfig.clangd.setup(opts)
-			lspconfig.unocss.setup(opts)
-			lspconfig.dockerls.setup(opts)
-			lspconfig.docker_compose_language_service.setup(opts)
-			lspconfig.eslint.setup(opts)
-			lspconfig.html.setup(opts)
-			lspconfig.jsonls.setup(opts)
-			lspconfig.jdtls.setup({
-				capabilities = capabilities,
-				settings = {
-					java = {
-						project = {
-							referencedLibraries = {
-								"lib/*",
-								"/usr/share/java/*",
-								"/usr/share/java/*/*",
-							},
-						},
-					},
-				},
-			})
-			lspconfig.ts_ls.setup(opts)
-			lspconfig.marksman.setup(opts)
-			lspconfig.intelephense.setup(opts)
-			lspconfig.ruff.setup(opts)
-			lspconfig.pyright.setup({
-				capabilities = capabilities,
-				settings = {
-					pyright = {
-						-- Using Ruff's import organizer
-						disableOrganizeImports = true,
-					},
-					python = {
-						analysis = {
-							-- Ignore all files for analysis to exclusively use Ruff for linting
-							ignore = { "*" },
-						},
-					},
-				},
-			})
-			lspconfig.sqls.setup(opts)
-			lspconfig.yamlls.setup(opts)
-			lspconfig.gitlab_ci_ls.setup(opts)
-			lspconfig.rust_analyzer.setup(opts)
-			lspconfig.svelte.setup(opts)
-			-- lspconfig.svelte.setup({
-			-- 	capabilities = {
-			-- 		workspace = {
-			-- 			didChangeWatchedFiles = false,
-			-- 		},
-			-- 	},
-			-- 	filetypes = { "svelte" },
-			-- 	on_attach = function(client, bufnr)
-			-- 		if client.name == "svelte" then
-			-- 			vim.api.nvim_create_autocmd("BufWritePost", {
-			-- 				pattern = { "*.js", "*.ts", "*.svelte" },
-			--                 group = vim.api.nvim_create_augroup("svelte_ondidchangetsorjsfile", { clear = true }),
-			-- 				callback = function(ctx)
-			-- 					client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-			-- 				end,
-			-- 			})
-			-- 		end
-			-- 		if vim.bo[bufnr].filetype == "svelte" then
-			-- 			vim.api.nvim_create_autocmd("BufWritePost", {
-			-- 				pattern = { "*.js", "*.ts", "*.svelte" },
-			-- 				callback = function(ctx)
-			-- 					client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-			-- 				end,
-			-- 			})
-			-- 		end
-			-- 	end,
-			-- })
-
 			-- This is an extremely stupid workaround. It restarts the whole svelte language server every time I save a page ts file.
 			-- Without this the language server just never catches the updated generated types, because the file watcher doesn't work.
 			-- No other workaround I've tried has worked.
