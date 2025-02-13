@@ -32,7 +32,6 @@ return {
 			},
 		},
 		init = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 			local mason_lspconfic = require("mason-lspconfig")
 			mason_lspconfic.setup_handlers({
@@ -41,7 +40,6 @@ return {
 				end,
 				["jdtls"] = function()
 					lspconfig.jdtls.setup({
-						capabilities = capabilities,
 						settings = {
 							java = {
 								project = {
@@ -57,16 +55,14 @@ return {
 				end,
 				["basedpyright"] = function()
 					lspconfig.basedpyright.setup({
-						capabilities = capabilities,
 						settings = {
 							basedpyright = {
 								-- Using Ruff's import organizer
 								disableOrganizeImports = true,
-							},
-							python = {
+                                autoImportCompletions = true,
 								analysis = {
-									-- Ignore all files for analysis to exclusively use Ruff for linting
-									ignore = { "*" },
+									-- Use mypy for type checking
+                                    typeCheckingMode = "off",
 								},
 							},
 						},
