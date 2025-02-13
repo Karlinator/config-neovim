@@ -24,7 +24,7 @@ return {
 				"marksman",
 				"intelephense",
 				"ruff",
-				"pyright",
+				"basedpyright",
 				"sqls",
 				"yamlls",
 				"gitlab_ci_ls",
@@ -55,11 +55,11 @@ return {
 						},
 					})
 				end,
-				["pyright"] = function()
-					lspconfig.pyright.setup({
+				["basedpyright"] = function()
+					lspconfig.basedpyright.setup({
 						capabilities = capabilities,
 						settings = {
-							pyright = {
+							basedpyright = {
 								-- Using Ruff's import organizer
 								disableOrganizeImports = true,
 							},
