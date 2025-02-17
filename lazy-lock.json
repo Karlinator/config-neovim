@@ -23,7 +23,7 @@
   "nvim-treesitter": { "branch": "master", "commit": "2cade9e3d105732b794bc37e7cb2dc53b1cf99dc" },
   "nvim-web-devicons": { "branch": "master", "commit": "1020869742ecb191f260818234517f4a1515cfe8" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
-  "remote-nvim.nvim": { "branch": "fix/nvim-install-linux", "commit": "83f27d9e3f99f6cca61ddedc51ebd528984c6818" },
+  "remote-nvim.nvim": { "branch": "fix/nvim-install-linux", "commit": "d12a48f9b5ec7d983d390fcbb56c75553cd74452" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "2a5ceff981501cff8f46871d5402cd3378a8ab6a" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
