@@ -14,7 +14,7 @@ return {
 			})
 		end,
 		init = function()
-			local format_sources = { ["null-ls"] = true, ruff = true, clangd = true }
+			local format_sources = { ["null-ls"] = true, ruff = true, clangd = true, rust_analyzer = true }
 			vim.keymap.set("n", "<leader>gf", function()
 				vim.lsp.buf.format({
 					filter = function(client)
