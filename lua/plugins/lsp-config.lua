@@ -62,7 +62,8 @@ return {
 								autoImportCompletions = true,
 								analysis = {
 									-- Use mypy for type checking
-									typeCheckingMode = "off",
+									typeCheckingMode = "basic",
+									reportUndefinedVariable = "hint",
 								},
 							},
 						},
