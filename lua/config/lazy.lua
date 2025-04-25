@@ -35,7 +35,8 @@ require("lazy").setup({
 })
 
 -- Automatically commit lockfile after running Lazy Update (or Sync)
-vim.api.nvim_create_autocmd("User", {
+-- TODO: It commits before the update is complete
+--[[ vim.api.nvim_create_autocmd("User", {
 	pattern = "LazyUpdate",
 	callback = function()
 		local repo_dir = "/home/karl/.config/nvim"
@@ -68,4 +69,4 @@ vim.api.nvim_create_autocmd("User", {
 			end
 		end
 	end,
-})
+}) ]]
