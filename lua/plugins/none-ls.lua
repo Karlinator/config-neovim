@@ -3,6 +3,7 @@ return {
 		"nvimtools/none-ls.nvim",
 		dependencies = {
 			"nvimtools/none-ls-extras.nvim",
+			"joechrisellis/lsp-format-modifications.nvim",
 		},
 		opts = function(_, opts)
 			local null_ls = require("null-ls")
@@ -12,6 +13,13 @@ return {
 					prefer_local = ".venv/bin/",
 				}),
 			})
+			opts.on_attach = function(client, bufnr)
+				-- your usual configuration — options, keymaps, etc
+				-- ...
+
+				local lsp_format_modifications = require("lsp-format-modifications")
+				lsp_format_modifications.attach(client, bufnr, { format_on_save = false })
+			end
 		end,
 		init = function()
 			local format_sources = { ["null-ls"] = true, ruff = true, clangd = true, rust_analyzer = true }
@@ -22,6 +30,7 @@ return {
 					end,
 				})
 			end, {})
+			vim.keymap.set("n", "<leader>cf", ":FormatModifications<CR>")
 		end,
 	},
 	{
