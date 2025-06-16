@@ -38,3 +38,4 @@ end
 vim.keymap.set("n", "<leader>e", function()
 	vim.diagnostic.open_float({ source = true })
 end, {})
+vim.keymap.set("n", "<leader>ge", vim.diagnostic.goto_next)
