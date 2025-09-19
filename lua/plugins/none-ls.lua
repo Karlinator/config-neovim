@@ -12,13 +12,15 @@ return {
 				null_ls.builtins.diagnostics.mypy.with({
 					prefer_local = ".venv/bin/",
 				}),
+				null_ls.builtins.formatting.prettierd,
 			})
 			opts.on_attach = function(client, bufnr)
 				-- your usual configuration — options, keymaps, etc
 				-- ...
 
-				local lsp_format_modifications = require("lsp-format-modifications")
-				lsp_format_modifications.format_modifications(client, bufnr, { format_on_save = false })
+				vim.api.nvim_buf_create_user_command(bufnr, "FormatModifications", function()
+					require("lsp-format-modifications").format_modifications(client, bufnr, { format_on_save = false })
+				end, {})
 			end
 		end,
 		init = function()
