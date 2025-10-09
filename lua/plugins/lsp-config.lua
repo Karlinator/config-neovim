@@ -43,12 +43,12 @@ return {
 				command = "LspRestart svelte",
 			})
 
-			vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-				pattern = "*.gitlab-ci*.{yml,yaml}",
-				callback = function()
-					vim.bo.filetype = "yaml.gitlab"
-				end,
-			})
+            vim.filetype.add({
+                pattern = {
+                    [".*%.gitlab%-ci.*%.ya?ml"] = "yaml.gitlab",
+                    [".*/ci%-templates/.*%.ya?ml"] = "yaml.gitlab",
+                },
+            })
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
