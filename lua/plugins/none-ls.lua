@@ -8,6 +8,7 @@ return {
 		opts = function(_, opts)
 			local null_ls = require("null-ls")
 			local detect = require("typecheck_detect")
+			local fmt = require("js_format_detect")
 
 			opts.sources = vim.list_extend(opts.sources or {}, {
 				null_ls.builtins.diagnostics.mypy.with({
@@ -17,7 +18,18 @@ return {
 						return detect.pick(utils.root) == "mypy"
 					end,
 				}),
-				null_ls.builtins.formatting.prettierd,
+				null_ls.builtins.formatting.biome.with({
+					runtime_condition = function(utils)
+						return fmt.pick(utils.root) == "biome"
+					end,
+				}),
+
+				-- Prettier daemon
+				null_ls.builtins.formatting.prettierd.with({
+					runtime_condition = function(utils)
+						return fmt.pick(utils.root) == "prettier"
+					end,
+				}),
 			})
 			opts.on_attach = function(client, bufnr)
 				-- your usual configuration — options, keymaps, etc
@@ -50,6 +62,7 @@ return {
 		opts = {
 			ensure_installed = {
 				"prettierd",
+				"biome",
 				"eslint_d",
 				"stylua",
 				"gitsigns",
