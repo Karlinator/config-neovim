@@ -29,6 +29,7 @@ return {
 				"yamlls",
 				"gitlab_ci_ls",
 				"svelte",
+				"ty",
 			},
 		},
 	},
@@ -43,12 +44,12 @@ return {
 				command = "LspRestart svelte",
 			})
 
-            vim.filetype.add({
-                pattern = {
-                    [".*%.gitlab%-ci.*%.ya?ml"] = "yaml.gitlab",
-                    [".*/ci%-templates/.*%.ya?ml"] = "yaml.gitlab",
-                },
-            })
+			vim.filetype.add({
+				pattern = {
+					[".*%.gitlab%-ci.*%.ya?ml"] = "yaml.gitlab",
+					[".*/ci%-templates/.*%.ya?ml"] = "yaml.gitlab",
+				},
+			})
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})

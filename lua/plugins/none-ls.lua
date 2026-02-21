@@ -7,10 +7,15 @@ return {
 		},
 		opts = function(_, opts)
 			local null_ls = require("null-ls")
+			local detect = require("typecheck_detect")
 
 			opts.sources = vim.list_extend(opts.sources or {}, {
 				null_ls.builtins.diagnostics.mypy.with({
 					prefer_local = ".venv/bin/",
+					runtime_condition = function(utils)
+						-- Enable mypy diagnostics only when this project "picks" mypy
+						return detect.pick(utils.root) == "mypy"
+					end,
 				}),
 				null_ls.builtins.formatting.prettierd,
 			})
