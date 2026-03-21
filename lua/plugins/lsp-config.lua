@@ -20,7 +20,7 @@ return {
 				"html",
 				"jsonls",
 				"jdtls",
-				"ts_ls",
+				"tsgo",
 				"marksman",
 				"intelephense",
 				"ruff",
