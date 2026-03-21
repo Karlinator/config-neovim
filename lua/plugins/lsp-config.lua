@@ -37,7 +37,6 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		init = function()
-
 			vim.filetype.add({
 				pattern = {
 					[".*%.gitlab%-ci.*%.ya?ml"] = "yaml.gitlab",
@@ -51,6 +50,16 @@ return {
 			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
 			vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, {})
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+			vim.keymap.set("n", "<leader>ch", function()
+				local params = { uri = vim.uri_from_bufnr(0) }
+				vim.lsp.buf_request(0, "textDocument/switchSourceHeader", params, function(err, uri)
+					if err or not uri or uri == "" then
+						vim.notify("No corresponding file found", vim.log.levels.WARN)
+						return
+					end
+					vim.cmd.edit(vim.uri_to_fname(uri))
+				end)
+			end, { desc = "Switch between source/header" })
 		end,
 	},
 }
