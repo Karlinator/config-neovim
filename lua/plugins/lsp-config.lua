@@ -36,13 +36,6 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		init = function()
-			-- This is an extremely stupid workaround. It restarts the whole svelte language server every time I save a page ts file.
-			-- Without this the language server just never catches the updated generated types, because the file watcher doesn't work.
-			-- No other workaround I've tried has worked.
-			vim.api.nvim_create_autocmd({ "BufWrite" }, {
-				pattern = { "+page.server.ts", "+page.ts", "+layout.server.ts", "+layout.ts" },
-				command = "LspRestart svelte",
-			})
 
 			vim.filetype.add({
 				pattern = {
