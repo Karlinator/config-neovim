@@ -60,6 +60,14 @@ return {
 					vim.cmd.edit(vim.uri_to_fname(uri))
 				end)
 			end, { desc = "Switch between source/header" })
+
+			vim.lsp.config("clangd", {
+				cmd = {
+					"clangd",
+					"--background-index",
+					"--clang-tidy",
+				},
+			})
 		end,
 	},
 }
