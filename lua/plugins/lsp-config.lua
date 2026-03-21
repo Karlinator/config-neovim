@@ -27,6 +27,7 @@ return {
 				"basedpyright",
 				"sqls",
 				"yamlls",
+				"rpmspec",
 				"gitlab_ci_ls",
 				"svelte",
 				"ty",
