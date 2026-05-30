@@ -31,6 +31,7 @@ return {
 				"gitlab_ci_ls",
 				"svelte",
 				"ty",
+				"kotlin_lsp",
 			},
 		},
 	},
