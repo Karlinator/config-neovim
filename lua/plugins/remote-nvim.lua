@@ -1,5 +1,5 @@
 return {
-    "amitds1997/remote-nvim.nvim",
+	"amitds1997/remote-nvim.nvim",
 	version = "*", -- Pin to GitHub releases
 	dependencies = {
 		"nvim-lua/plenary.nvim", -- For standard functions
@@ -7,13 +7,13 @@ return {
 		"nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
 	},
 	config = {
-        remote = {
-            copy_dirs = {
-                config = {
-                    dirs = { "lsp", "lua", "init.lua" },
-                },
-            },
-        },
+		remote = {
+			copy_dirs = {
+				config = {
+					dirs = { "lsp", "lua", "init.lua" },
+				},
+			},
+		},
 		client_callback = function(port)
 			local cmd = ("konsole --hide-tabbar --hide-menubar -e nvim --server localhost:%s --remote-ui"):format(port)
 			vim.fn.jobstart(cmd, {

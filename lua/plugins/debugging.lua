@@ -44,8 +44,8 @@ return {
 				},
 			}
 
-            dap.configurations.cpp = cpp;
-            dap.configurations.c = cpp;
+			dap.configurations.cpp = cpp
+			dap.configurations.c = cpp
 
 			vim.keymap.set("n", "<F5>", function()
 				require("dap").continue()
@@ -96,7 +96,7 @@ return {
 			"mfussenegger/nvim-dap",
 			"nvim-neotest/nvim-nio",
 		},
-        config = true,
+		config = true,
 		init = function()
 			local dap, dapui = require("dap"), require("dapui")
 			dap.listeners.before.attach.dapui_config = function()
