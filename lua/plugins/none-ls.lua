@@ -10,24 +10,30 @@ return {
 			local detect = require("typecheck_detect")
 			local fmt = require("js_format_detect")
 
+			-- `params.root` is only set by generator_factory *after* runtime_condition
+			-- runs, so it's nil here. Resolve it the same way none-ls does.
+			local function root()
+				return require("null-ls.utils").get_root()
+			end
+
 			opts.sources = vim.list_extend(opts.sources or {}, {
 				null_ls.builtins.diagnostics.mypy.with({
 					prefer_local = ".venv/bin/",
-					runtime_condition = function(utils)
+					runtime_condition = function()
 						-- Enable mypy diagnostics only when this project "picks" mypy
-						return detect.pick(utils.root) == "mypy"
+						return detect.pick(root()) == "mypy"
 					end,
 				}),
 				null_ls.builtins.formatting.biome.with({
-					runtime_condition = function(utils)
-						return fmt.pick(utils.root) == "biome"
+					runtime_condition = function()
+						return fmt.pick(root()) == "biome"
 					end,
 				}),
 
 				-- Prettier daemon
 				null_ls.builtins.formatting.prettierd.with({
-					runtime_condition = function(utils)
-						return fmt.pick(utils.root) == "prettier"
+					runtime_condition = function()
+						return fmt.pick(root()) == "prettier"
 					end,
 				}),
 			})
